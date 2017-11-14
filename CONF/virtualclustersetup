@@ -1,0 +1,27 @@
+Go to amazon AWS link 
+Sign up with credentials 
+Then go to Services and Select EC2 
+Click on Instances 
+Click on Launch Instance 
+Select your operating system 
+Choose  H/W or instance type as per the requirement (Used c3.large) ' 
+c3.large- two virtual CPU and 3.75 RAM and 2*16 GB SSD 
+Select spot instances and click on Review and launch 
+
+Click on Step 6: Configure Security group 
+The current type is SSH, protocol is TCP on port 22 and source can be from anywhere 
+So if you will ping it it will not respond so in order to enable it click on Add rule and select ALL ICMP and ALL TCP 
+
+Make its source as "Anywhere" and then click on Review and Launch 
+
+Next important thing to do is Storage and for that go to "4. Add Storage" and change the size as per the requirement 
+
+Next step is to click on Launch 
+A pop will be displayed in which you have to enter the key value pair and click on "Download key pair" 
+
+Click on Launch Instances 
+
+Then click on Spot requests and you will see the spot request which we have created 
+Then go to instances tab you will see your instance 
+In the instances tab click on Connect button a pop up will be displayed 
+

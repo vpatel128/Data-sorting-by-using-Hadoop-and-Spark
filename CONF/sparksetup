@@ -1,0 +1,28 @@
+Download spark-1.6.1-bin-hadoop2.6
+
+create new access key
+
+export AWSAWSAccessKeyId and AAWSSecretKey
+
+	export AWS_ACCESS_KEY_ID=AKIAIKRB5CM2Y5XOPHWA
+	export AWS_SECRET_ACCESS_KEY=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
+
+./spark-ec2 -k spark -i /root/spark.pem -s 1 -t c3.large -r us-east-1 --spot-price=0.027 launch Spark
+
+Download gensort-linux-1.5.tar.gz
+
+	wget http://www.ordinal.com/try.cgi/gensort-linux-1.5.tar.gz
+	tar xvf gensort-linux-1.5.tar.gz 
+
+masters
+ec2-52-201-212-65.compute-1.amazonaws.com
+
+slaves
+ec2-54-85-40-32.compute-1.amazonaws.com
+
+for 16 nodes
+
+./spark-ec2 -k spark -i /root/spark.pem -s 16 -t c3.large -r us-east-1 --spot-price=0.027 launch Spark
+
+
+

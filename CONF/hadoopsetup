@@ -1,0 +1,136 @@
+
+Download JAVA 8
+
+	sudo add-apt-repository ppa:webupd8team/java
+	sudo apt-get update	
+	sudo apt-get install oracle-java8-installer
+
+	sudo apt-get -y install ssh
+	sudo apt-get -y install rsync
+
+Download hadoop-2.7.2.tar.gz
+
+	wget http://download.nextag.com/apache/hadoop/common/hadoop-2.7.2/hadoop-2.7.2.tar.gz
+	tar -xvf hadoop-2.7.2.tar.gz
+	
+eval 'ssh-agent -s
+
+chmod 600 hadoop.pem
+
+ssh-add hadoop.pem
+
+"vi ~/.bashrc"
+
+	export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+	export CONF=/home/ubuntu/PA2/hadoop-2.7.2/etc/hadoop
+	export PATH=$PATH:$/home/ubuntu/PA2/hadoop-2.7.2/bin
+
+"hadoop-2.7.2/etc/hadoop"
+
+'core-site.xml'
+
+	<configuration>
+	<property>
+	    <name>fs.default.name</name>
+	    <value>hdfs://ec2-52-87-163-11.compute-1.amazonaws.com:8020</value>
+	</property>
+	</configuration>
+
+'hadoop-env.sh'
+
+	export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+	
+'hdfs-site.xml'
+
+	<configuration>
+	<property>
+	    <name>dfs.replication</name>
+	    <value>1</value>
+	</property>
+	<property>
+	   <name>dfs.permissions</name>
+	   <value>false</value>
+	</property>
+	</configuration>
+
+
+'mapred-site.xml'
+
+	<configuration>
+	<property>
+	<name>mapreduce.jobtracker.address</name>
+	<value>hdfs://ec2-52-87-163-11.compute-1.amazonaws.com:8020</value>
+	<description>The host and port that the MapReduce job tracker runs at. If "local", then jobs are run in-process as a single map and 	reduce task.
+	</description>
+	</property>
+	<property>
+	<name>mapreduce.framework.name</name>
+	<value>yarn</value>
+	<description>The framework for running mapreduce jobs</description>
+	</property>
+	<property>
+	<name>mapreduce.job.reduces</name>
+	<value>4</value>
+	</property></configuration>
+
+'yarn-site.xml'
+
+	<configuration>
+	<property>
+	<name>yarn.nodemanager.aux-services</name>
+	<value>mapreduce_shuffle</value>
+	</property>
+	<property>
+	<name>yarn.resourcemanager.scheduler.address</name>
+	<value>ec2-52-87-163-11.compute-1.amazonaws.com:8020</value>
+	</property>
+	<property>
+	<name>yarn.resourcemanager.address</name>
+	<value>ec2-52-87-163-11.compute-1.amazonaws.com:8020</value>
+	</property>
+	<property>
+	<name>yarn.resourcemanager.webapp.address</name>
+	<value>ec2-52-87-163-11.compute-1.amazonaws.com:8020</value>
+	</property>
+	<property>
+	<name>yarn.resourcemanager.resource-tracker.address</name>
+	<value>ec2-52-87-163-11.compute-1.amazonaws.com:8020</value>
+	</property>
+	<property>
+	<name>yarn.resourcemanager.admin.address</name>
+	<value>ec2-52-87-163-11.compute-1.amazonaws.com:8020</value>
+	</property>
+	</configuration>
+
+
+'slaves'
+
+	ec2-52-201-212-65.compute-1.amazonaws.com
+
+For 16 nodes 
+
+'slaves'
+
+	ec2-54-85-40-32.compute-1.amazonaws.com
+	ec2-52-87-231-120.compute-1.amazonaws.com
+	ec2-54-164-78-231.compute-1.amazonaws.com
+	ec2-52-91-160-106.compute-1.amazonaws.com
+	ec2-52-91-154-243.compute-1.amazonaws.com
+	ec2-52-207-207-253.compute-1.amazonaws.com
+	ec2-54-152-254-177.compute-1.amazonaws.com
+	ec2-52-3-252-29.compute-1.amazonaws.com
+	ec2-52-87-231-192.compute-1.amazonaws.com
+	ec2-54-152-232-73.compute-1.amazonaws.com
+	ec2-52-87-155-38.compute-1.amazonaws.com
+	ec2-54-86-178-94.compute-1.amazonaws.com
+	ec2-54-152-232-143.compute-1.amazonaws.com
+	ec2-52-90-22-111.compute-1.amazonaws.com
+	ec2-52-91-137-14.compute-1.amazonaws.com
+	ec2-54-152-53-120.compute-1.amazonaws.com
+
+
+Hadoop Startup
+
+	hadoop/bin/hdfs namenode -format
+	hadoop/sbin/start-dfs.sh
+	hadoop/sbin/start-yarn.sh
